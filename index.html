@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>History of the numbers</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	<style>
+		#fact{
+			display:none;
+		}
+	</style>
+</head>
+<body class="bg-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mx-auto">
+				<div class="class bg-primary text-white mt-5 p-4">
+					<h1>Number Facts</h1>
+					<p>Enter a number and  know what is the story of it</p>
+					<input type="number" class="form-control form-control-lg" id="numberInput" placeholder="enter any number ....">
+					<div id="fact" class="card-body">
+						<h4 class="card-title">
+							Numbar Fact
+						</h4>
+						<p id="factText" class="card-text"></p>
+					</fact>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script type>
+	let fact = document.querySelector('#fact');
+	let factText =  document.querySelector('#factText');
+	let  numberInput = document.querySelector('#numberInput');
+	
+	numberInput.addEventListener('input',getFactFetch);
+
+	function getFactFetch(){
+		let number =  numberInput.value;
+
+		fetch('http://numbersapi.com/' + number)
+			.then(response => response.text())
+			.then(data =>{
+			//console.log(data);
+			if (number != '') {
+				fact.style.display = 'block';
+					factText.innerText = data;
+				}
+			})
+			.catch(err => console.log(err));
+		}
+
+	</script>
+</html>
